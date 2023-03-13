@@ -5,7 +5,7 @@ module.exports = {
       2,
       "always",
       [
-        "feature", // 增加新特征
+        "feat", // 增加新特征
         "fix", // 修复bug
         "docs", // 文档变更
         "style", // 不影响代码含义的修改

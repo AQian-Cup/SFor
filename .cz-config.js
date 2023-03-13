@@ -1,6 +1,6 @@
 module.exports = {
   types: [
-    { value: "feature", name: "feature: 增加新特征" },
+    { value: "feat", name: "feat: 增加新特征" },
     { value: "fix", name: "fix: 修复bug" },
     { value: "docs", name: "docs: 文档变更" },
     {
@@ -20,11 +20,26 @@ module.exports = {
       name: "build: 对构建系统或者外部依赖项进行了修改",
     },
   ],
+  scopes: [
+    {
+      name: "core",
+    },
+    {
+      name: "view",
+    },
+    {
+      name: "control",
+    },
+    {
+      name: "data",
+    },
+  ],
   // override the messages, defaults are as follows
   messages: {
     type: "请选择提交类型:",
-    customScope: "请输入您修改的范围(可选):",
-    subject: "请简要描述提交 message (必填):",
+    scope: "请选择您修改的范围:",
+    customScope: "请输入您修改的范围:",
+    subject: "请简要描述提交 message:",
     body: "请输入详细描述(可选，待优化去除，跳过即可):",
     footer: "请输入要关闭的issue(待优化去除，跳过即可):",
     confirmCommit: "确认使用以上信息提交？(y/n/e/h)",
