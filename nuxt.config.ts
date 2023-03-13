@@ -5,5 +5,6 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@vueuse/nuxt",
     "@element-plus/nuxt",
+    "@nuxtjs/eslint-module",
   ],
 });
