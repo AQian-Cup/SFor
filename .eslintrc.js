@@ -21,5 +21,6 @@ module.exports = {
     // override/add rules settings here, such as:
     "vue/multi-word-component-names": 0,
     "vue/require-v-for-key": 0,
+    "vue/valid-v-for": 0,
   },
 };
