@@ -7,5 +7,11 @@ export default defineNuxtConfig({
     "@element-plus/nuxt",
     "@nuxtjs/eslint-module",
   ],
+  app: {
+    pageTransition: {
+      name: "page",
+      mode: "out-in",
+    },
+  },
   css: ["@/assets/css/base.css"],
 });
