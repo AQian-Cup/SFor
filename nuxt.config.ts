@@ -7,4 +7,5 @@ export default defineNuxtConfig({
     "@element-plus/nuxt",
     "@nuxtjs/eslint-module",
   ],
+  css: ["@/assets/css/base.css"],
 });
