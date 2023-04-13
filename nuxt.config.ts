@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@element-plus/nuxt",
     "@nuxtjs/eslint-module",
+    "nuxt-svgo",
   ],
   app: {
     pageTransition: {

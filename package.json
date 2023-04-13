@@ -38,6 +38,7 @@
     "eslint-plugin-vue": "^9.9.0",
     "lint-staged": "^13.2.0",
     "nuxt": "^3.2.3",
+    "nuxt-svgo": "1.1.1-development",
     "prettier": "^2.8.4"
   },
   "dependencies": {
