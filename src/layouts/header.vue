@@ -9,10 +9,22 @@
         <ElDivider v-else direction="vertical"></ElDivider>
       </template>
     </div>
-    <ElAvatar :size="36" class="avatar"></ElAvatar>
+    <div class="icons">
+      <ElIcon
+        v-for="icon in iconArray"
+        :size="iconSize"
+        @click="handleIcon(icon)"
+      >
+        <component :is="icon"></component>
+      </ElIcon>
+    </div>
+    <ElAvatar :size="avatarSize" class="avatar"></ElAvatar>
   </div>
 </template>
 <script lang="ts" setup>
+interface iconType {
+  name: string;
+}
 const navArray = ref<Array<string>>([
   "首页",
   "",
@@ -20,6 +32,19 @@ const navArray = ref<Array<string>>([
   "",
   "资讯",
 ]);
+const iconArray = shallowRef<Array<unknown>>([
+  ElIconSetting,
+  ElIconMessageBox,
+  ElIconUser,
+]);
+const iconSize = ref<number>(20);
+const avatarSize = computed(() => {
+  return (iconSize.value * 8) / 5;
+});
+const handleIcon = (icon: unknown) => {
+  if ((icon as iconType).name !== undefined) {
+  }
+};
 </script>
 <style scoped>
 .header {
@@ -52,6 +77,13 @@ const navArray = ref<Array<string>>([
 .navItem:focus,
 .navItem:active {
   color: var(--el-text-color-regular);
+}
+.icons {
+  display: inline-flex;
+}
+.icons i {
+  margin-right: 18px;
+  cursor: pointer;
 }
 .avatar {
   cursor: pointer;
