@@ -56,6 +56,7 @@ const handleIcon = (icon: unknown) => {
   align-items: center;
   font-size: 18px;
   color: var(--el-text-color-secondary);
+  border-bottom: 3px solid var(--el-color-info-light-7);
 }
 .navArray {
   display: flex;
