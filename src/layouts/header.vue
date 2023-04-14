@@ -9,7 +9,6 @@
         <ElDivider v-else direction="vertical"></ElDivider>
       </template>
     </div>
-    <div class="message"></div>
     <ElAvatar :size="36" class="avatar"></ElAvatar>
   </div>
 </template>
@@ -52,9 +51,6 @@ const navArray = ref<Array<string>>([
 .navItem:focus,
 .navItem:active {
   color: var(--el-text-color-regular);
-}
-.message {
-  margin-left: auto;
 }
 .avatar {
   cursor: pointer;
