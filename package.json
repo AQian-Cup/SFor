@@ -29,6 +29,7 @@
     "@commitlint/config-conventional": "^17.4.4",
     "@element-plus/nuxt": "^1.0.4",
     "@nuxtjs/eslint-module": "^4.0.2",
+    "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
     "cz-git": "^1.6.1",
@@ -46,6 +47,7 @@
     "@vueuse/core": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
     "element-plus": "^2.3.0",
-    "pinia": "^2.0.33"
+    "pinia": "^2.0.33",
+    "pinia-plugin-persistedstate": "^3.1.0"
   }
 }

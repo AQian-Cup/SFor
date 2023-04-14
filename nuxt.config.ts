@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   srcDir: "src/",
   modules: [
     "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
     "@vueuse/nuxt",
     "@element-plus/nuxt",
     "@nuxtjs/eslint-module",
