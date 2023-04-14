@@ -38,6 +38,7 @@ const navArray = ref<Array<string>>([
   justify-content: space-between;
   align-items: center;
   width: 30%;
+  margin-right: auto;
 }
 .navItem {
   display: flex;
