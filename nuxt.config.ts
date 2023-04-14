@@ -16,4 +16,12 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/css/base.css"],
+  nitro: {
+    storage: {
+      db: {
+        driver: "mongodb",
+        connectionString: "mongodb://localhost:27017/",
+      },
+    },
+  },
 });
