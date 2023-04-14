@@ -10,7 +10,7 @@
       </template>
     </div>
     <div class="message"></div>
-    <div class="avatar"></div>
+    <ElAvatar :size="36" class="avatar"></ElAvatar>
   </div>
 </template>
 <script lang="ts" setup>
@@ -26,11 +26,11 @@ const navArray = ref<Array<string>>([
 .header {
   box-sizing: border-box;
   width: 100%;
-  height: 48px;
+  height: 60px;
   padding: 0px 18%;
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--el-text-color-secondary);
 }
 .navArray {
@@ -46,6 +46,7 @@ const navArray = ref<Array<string>>([
   justify-content: center;
   align-items: center;
   flex: 1;
+  cursor: pointer;
 }
 .navItem:hover,
 .navItem:focus,
@@ -54,5 +55,8 @@ const navArray = ref<Array<string>>([
 }
 .message {
   margin-left: auto;
+}
+.avatar {
+  cursor: pointer;
 }
 </style>
