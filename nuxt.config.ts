@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "@element-plus/nuxt",
     "@nuxtjs/eslint-module",
     "nuxt-svgo",
+    "@sidebase/nuxt-auth",
   ],
   app: {
     pageTransition: {
