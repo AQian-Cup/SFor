@@ -3,9 +3,11 @@ export default defineNuxtConfig({
   srcDir: "src/",
   modules: [
     "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
     "@vueuse/nuxt",
     "@element-plus/nuxt",
     "@nuxtjs/eslint-module",
+    "nuxt-svgo",
   ],
   app: {
     pageTransition: {
@@ -14,4 +16,12 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/css/base.css"],
+  nitro: {
+    storage: {
+      db: {
+        driver: "mongodb",
+        connectionString: "mongodb://localhost:27017/",
+      },
+    },
+  },
 });

@@ -9,11 +9,22 @@
         <ElDivider v-else direction="vertical"></ElDivider>
       </template>
     </div>
-    <div class="message"></div>
-    <div class="avatar"></div>
+    <div class="icons">
+      <ElIcon
+        v-for="icon in iconArray"
+        :size="iconSize"
+        @click="handleIcon(icon)"
+      >
+        <component :is="icon"></component>
+      </ElIcon>
+    </div>
+    <ElAvatar :size="avatarSize" class="avatar"></ElAvatar>
   </div>
 </template>
 <script lang="ts" setup>
+interface iconType {
+  name: string;
+}
 const navArray = ref<Array<string>>([
   "首页",
   "",
@@ -21,17 +32,31 @@ const navArray = ref<Array<string>>([
   "",
   "资讯",
 ]);
+const iconArray = shallowRef<Array<unknown>>([
+  ElIconSetting,
+  ElIconMessageBox,
+  ElIconUser,
+]);
+const iconSize = ref<number>(20);
+const avatarSize = computed(() => {
+  return (iconSize.value * 8) / 5;
+});
+const handleIcon = (icon: unknown) => {
+  if ((icon as iconType).name !== undefined) {
+  }
+};
 </script>
 <style scoped>
 .header {
   box-sizing: border-box;
   width: 100%;
-  height: 48px;
+  height: 60px;
   padding: 0px 18%;
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--el-text-color-secondary);
+  border-bottom: 3px solid var(--el-color-info-light-7);
 }
 .navArray {
   display: flex;
@@ -39,6 +64,7 @@ const navArray = ref<Array<string>>([
   justify-content: space-between;
   align-items: center;
   width: 30%;
+  margin-right: auto;
 }
 .navItem {
   display: flex;
@@ -46,13 +72,21 @@ const navArray = ref<Array<string>>([
   justify-content: center;
   align-items: center;
   flex: 1;
+  cursor: pointer;
 }
 .navItem:hover,
 .navItem:focus,
 .navItem:active {
   color: var(--el-text-color-regular);
 }
-.message {
-  margin-left: auto;
+.icons {
+  display: inline-flex;
+}
+.icons i {
+  margin-right: 18px;
+  cursor: pointer;
+}
+.avatar {
+  cursor: pointer;
 }
 </style>
