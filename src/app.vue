@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="app">
     <NuxtLayout name="header"></NuxtLayout>
+    <NuxtPage style="min-height: 100vh"></NuxtPage>
     <NuxtLayout name="footer"></NuxtLayout>
   </div>
 </template>
