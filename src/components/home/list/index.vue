@@ -1,6 +1,6 @@
 <template>
   <div class="homeList">
-    <div class="listHeader">
+    <div class="header">
       <div class="headerText">{{ headerText }}</div>
       <ElIcon :size="iconSize">
         <ElIconRefresh></ElIconRefresh>
@@ -18,6 +18,7 @@
         ></div>
       </div>
     </div>
+    <div></div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -37,7 +38,7 @@ const handleSwitch = (event: MouseEvent) => {
 };
 </script>
 <style scoped>
-.listHeader {
+.header {
   display: flex;
   align-items: center;
 }
