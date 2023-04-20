@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="leftPart">
-      <ElCarousel height="400px" class="carousel">
+      <ElCarousel height="400px">
         <ElCarouselItem v-for="item in imageUrlArray">
           <ElImage
             class="image"
@@ -76,6 +76,7 @@ const postArray = ref<Array<postType>>([
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 20px 0;
 }
 .home > div {
   display: flex;
@@ -83,9 +84,6 @@ const postArray = ref<Array<postType>>([
 }
 .leftPart {
   width: 45%;
-}
-.carousel {
-  margin: 20px 0;
 }
 .image {
   width: 100%;
