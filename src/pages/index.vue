@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="leftPart">
-      <ElCarousel height="400px">
+      <ElCarousel height="400px" class="carousel">
         <ElCarouselItem v-for="item in imageUrlArray">
           <ElImage
             class="image"
@@ -22,7 +22,9 @@
         <el-skeleton :rows="5" animated></el-skeleton>
       </template>
     </div>
-    <div class="rightPart"></div>
+    <div class="rightPart">
+      <HomeList></HomeList>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -84,6 +86,10 @@ const postArray = ref<Array<postType>>([
 }
 .leftPart {
   width: 45%;
+  margin-right: 0.5%;
+}
+.carousel {
+  margin-bottom: 20px;
 }
 .image {
   width: 100%;
@@ -91,5 +97,6 @@ const postArray = ref<Array<postType>>([
 }
 .rightPart {
   width: 25%;
+  margin-left: 0.5%;
 }
 </style>
