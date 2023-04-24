@@ -22,7 +22,9 @@
         <el-skeleton :rows="5" animated></el-skeleton>
       </template>
     </div>
-    <div class="rightPart"></div>
+    <div class="rightPart">
+      <HomeList></HomeList>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -76,6 +78,7 @@ const postArray = ref<Array<postType>>([
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 20px 0;
 }
 .home > div {
   display: flex;
@@ -83,9 +86,10 @@ const postArray = ref<Array<postType>>([
 }
 .leftPart {
   width: 45%;
+  margin-right: 0.5%;
 }
 .carousel {
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 .image {
   width: 100%;
@@ -93,5 +97,6 @@ const postArray = ref<Array<postType>>([
 }
 .rightPart {
   width: 25%;
+  margin-left: 0.5%;
 }
 </style>
