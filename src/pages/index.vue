@@ -19,10 +19,11 @@
         ></HomePost>
       </template>
       <template v-else>
-        <el-skeleton :rows="5" animated></el-skeleton>
+        <ElSkeleton :rows="5" animated></ElSkeleton>
       </template>
     </div>
     <div class="rightPart">
+      <HomeProgress></HomeProgress>
       <HomeList></HomeList>
     </div>
   </div>
