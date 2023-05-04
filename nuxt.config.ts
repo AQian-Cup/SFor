@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import storage from "./src/utils/storage/config";
+
 export default defineNuxtConfig({
   srcDir: "src/",
   modules: [
@@ -8,6 +10,7 @@ export default defineNuxtConfig({
     "@element-plus/nuxt",
     "@nuxtjs/eslint-module",
     "nuxt-svgo",
+    "@sidebase/nuxt-auth",
   ],
   app: {
     pageTransition: {
@@ -17,11 +20,6 @@ export default defineNuxtConfig({
   },
   css: ["@/assets/css/base.css"],
   nitro: {
-    storage: {
-      db: {
-        driver: "mongodb",
-        connectionString: "mongodb://localhost:27017/",
-      },
-    },
+    storage,
   },
 });
