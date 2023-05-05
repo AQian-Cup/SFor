@@ -12,6 +12,9 @@ export default defineNuxtConfig({
     "nuxt-svgo",
     "@sidebase/nuxt-auth",
   ],
+  auth: {
+    enableGlobalAppMiddleware: true,
+  },
   app: {
     pageTransition: {
       name: "page",
