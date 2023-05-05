@@ -159,6 +159,7 @@ const handleLogin = () => {
 .input {
   display: flex;
   align-items: center;
+  width: 75%;
 }
 .input > div {
   min-width: 80px;
