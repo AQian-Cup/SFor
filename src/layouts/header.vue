@@ -56,7 +56,7 @@ const handleIcon = (icon: unknown) => {
   align-items: center;
   font-size: 18px;
   color: var(--el-text-color-secondary);
-  border-bottom: 3px solid var(--el-color-info-light-7);
+  border-bottom: 2px solid var(--el-color-info-light-7);
 }
 .navArray {
   display: flex;
@@ -73,11 +73,12 @@ const handleIcon = (icon: unknown) => {
   align-items: center;
   flex: 1;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 .navItem:hover,
 .navItem:focus,
 .navItem:active {
-  color: var(--el-text-color-regular);
+  color: var(--el-text-color-primary);
 }
 .icons {
   display: inline-flex;
@@ -85,6 +86,10 @@ const handleIcon = (icon: unknown) => {
 .icons i {
   margin-right: 18px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+.icons i:hover {
+  color: var(--el-text-color-primary);
 }
 .avatar {
   cursor: pointer;
