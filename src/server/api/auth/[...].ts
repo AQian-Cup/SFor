@@ -19,7 +19,10 @@ export default NuxtAuthHandler({
         if (!(await authUser(email, password))) {
           return null;
         }
-        return true;
+        const user = await useStorage("user").getItem(
+          email,
+        );
+        return user;
       },
     }),
   ],
