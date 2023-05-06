@@ -94,6 +94,12 @@ const registerInputArray = ref([
     model: "",
     showPassword: true,
   },
+  {
+    label: "邀请码：",
+    type: "text",
+    model: "",
+    showPassword: false,
+  },
 ]);
 const loginInputArray = ref([
   {
@@ -153,6 +159,7 @@ const handleLogin = () => {
 .input {
   display: flex;
   align-items: center;
+  width: 75%;
 }
 .input > div {
   min-width: 80px;
