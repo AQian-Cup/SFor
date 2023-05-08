@@ -25,6 +25,7 @@
 interface iconType {
   name: string;
 }
+const { data } = useAuth();
 const navArray = ref<Array<string>>([
   "首页",
   "",
@@ -42,8 +43,24 @@ const avatarSize = computed(() => {
   return (iconSize.value * 8) / 5;
 });
 const handleIcon = (icon: unknown) => {
-  if ((icon as iconType).name !== undefined) {
+  const functionObject: { [key: string]: () => void } = {
+    // Setting: goSetting,
+    // MessageBox: goMessageBox,
+    User: goUser,
+  };
+  const name = (icon as iconType).name;
+  if (name) {
+    functionObject[name]();
   }
+};
+// const goSetting = () => {};
+// const goMessageBox = () => {};
+const goUser = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { id } = data.value?.user as any;
+  return navigateTo({
+    path: "/user/" + id,
+  });
 };
 </script>
 <style scoped>
