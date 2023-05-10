@@ -1,5 +1,3 @@
-import { useMongodb } from "../storage";
-
 export const hasUser = async (email: string) => {
   return await useMongodb("SFor", "user").hasItem({
     email,
