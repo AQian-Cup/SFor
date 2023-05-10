@@ -1,6 +1,6 @@
-export const hasUser = async (email: string) => {
+export const hasUser = async (id: number) => {
   return await useMongodb("SFor", "user").hasItem({
-    email,
+    id,
   });
 };
 

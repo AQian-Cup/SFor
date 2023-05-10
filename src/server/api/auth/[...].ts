@@ -32,9 +32,6 @@ export default NuxtAuthHandler({
       },
       async authorize(credentials: any) {
         const { email, password } = credentials;
-        if (!(await hasUser(email))) {
-          return null;
-        }
         const user = await authUser(email, password);
         return user;
       },
