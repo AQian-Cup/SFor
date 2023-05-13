@@ -3,7 +3,11 @@ export const hasUser = async (id: number) => {
     id,
   });
 };
-
+export const getUser = async (id: number) => {
+  return await useMongodb("SFor", "user").getItem({
+    id,
+  });
+};
 export const authUser = async (
   email: string,
   password: string,
