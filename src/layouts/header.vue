@@ -72,7 +72,7 @@ const goUser = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { id } = data.value?.user as any;
   return navigateTo({
-    path: "/user/" + id,
+    path: `/user/${id}`,
   });
 };
 </script>
