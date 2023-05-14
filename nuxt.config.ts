@@ -1,6 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import storage from "./src/utils/storage/config";
-
 export default defineNuxtConfig({
   srcDir: "src/",
   modules: [
@@ -22,7 +20,4 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/css/base.css"],
-  nitro: {
-    storage,
-  },
 });

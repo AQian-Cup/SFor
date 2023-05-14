@@ -3,7 +3,12 @@
     <div class="logo"></div>
     <div class="navArray">
       <template v-for="(navItem, index) of navArray">
-        <div v-if="navItem" :key="index" class="navItem">
+        <div
+          v-if="navItem"
+          :key="index"
+          class="navItem"
+          @click="handleNav(navItem)"
+        >
           {{ navItem }}
         </div>
         <ElDivider v-else direction="vertical"></ElDivider>
@@ -25,6 +30,7 @@
 interface iconType {
   name: string;
 }
+const { data } = useAuth();
 const navArray = ref<Array<string>>([
   "首页",
   "",
@@ -41,9 +47,33 @@ const iconSize = ref<number>(20);
 const avatarSize = computed(() => {
   return (iconSize.value * 8) / 5;
 });
+const handleNav = (nav: string) => {
+  const routeObject: { [key: string]: string } = {
+    首页: "/",
+  };
+  return navigateTo({
+    path: routeObject[nav],
+  });
+};
 const handleIcon = (icon: unknown) => {
-  if ((icon as iconType).name !== undefined) {
+  const functionObject: { [key: string]: () => void } = {
+    // Setting: goSetting,
+    // MessageBox: goMessageBox,
+    User: goUser,
+  };
+  const name = (icon as iconType).name;
+  if (name) {
+    functionObject[name]();
   }
+};
+// const goSetting = () => {};
+// const goMessageBox = () => {};
+const goUser = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { id } = data.value?.user as any;
+  return navigateTo({
+    path: `/user/${id}`,
+  });
 };
 </script>
 <style scoped>

@@ -1,19 +1,22 @@
-interface userType {
-  username: string;
-  password: string;
-}
-
-export const hasUser = async (email: string) => {
-  return await useStorage("user").hasItem(email);
+export const hasUser = async (id: number) => {
+  return await useMongodb("SFor", "user").hasItem({
+    id,
+  });
 };
-
+export const getUser = async (id: number) => {
+  return await useMongodb("SFor", "user").getItem({
+    id,
+  });
+};
 export const authUser = async (
   email: string,
   password: string,
 ) => {
-  const user = await useStorage("user").getItem(email);
-  if (password !== (user as userType)?.password) {
-    return false;
+  const user = await useMongodb("SFor", "user").getItem({
+    email,
+  });
+  if (password !== user?.password) {
+    return null;
   }
-  return true;
+  return user;
 };
