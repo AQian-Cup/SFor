@@ -69,7 +69,7 @@ const moreArray = ref<Array<moreItemType>>([
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 3px solid var(--el-color-warning-light-5);
+  border-top: 2px solid var(--el-color-warning-light-5);
   color: var(--el-text-color-secondary);
   background-color: var(--el-bg-color-page);
 }
