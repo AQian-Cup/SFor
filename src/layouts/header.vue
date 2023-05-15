@@ -58,7 +58,7 @@ const handleNav = (nav: string) => {
 const handleIcon = (icon: unknown) => {
   const functionObject: { [key: string]: () => void } = {
     // Setting: goSetting,
-    // MessageBox: goMessageBox,
+    MessageBox: goMessage,
     User: goUser,
   };
   const name = (icon as iconType).name;
@@ -67,7 +67,11 @@ const handleIcon = (icon: unknown) => {
   }
 };
 // const goSetting = () => {};
-// const goMessageBox = () => {};
+const goMessage = () => {
+  return navigateTo({
+    path: `/message`,
+  });
+};
 const goUser = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { id } = data.value?.user as any;
