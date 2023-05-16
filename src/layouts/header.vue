@@ -24,7 +24,7 @@
       </ElIcon>
     </div>
     <ElAvatar :size="avatarSize" class="avatar">
-      <ElIcon class="signOut" @click="signOut">
+      <ElIcon v-if="data" class="signOut" @click="signOut">
         <ElIconCloseBold></ElIconCloseBold>
       </ElIcon>
     </ElAvatar>
