@@ -192,7 +192,7 @@ const handleLogin = () => {
   width: 50%;
   height: 100%;
   background: var(--el-color-primary);
-  transition: all 1s ease-in-out;
+  transition: transform 1s ease-in-out;
 }
 .coverMove {
   transform: translateX(100%);
