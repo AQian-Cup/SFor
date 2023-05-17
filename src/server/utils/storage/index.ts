@@ -20,21 +20,14 @@ export const useMongodb = (
       return document ?? null;
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async setItem(filter: object, update: object) {
-      const currentDateTime = new Date();
-      await collection.findOneAndUpdate(
+    async setItem(filter: object, update: object = {}) {
+      return await collection.findOneAndUpdate(
         filter,
         {
-          $set: {
-            filter,
-            update,
-            modifiedAt: currentDateTime,
-          },
-          $setOnInsert: { createdAt: currentDateTime },
+          $set: update,
         },
         { upsert: true, returnDocument: "after" },
       );
-      return;
     },
     async removeItem(filter: object) {
       return await collection.deleteOne(filter);
