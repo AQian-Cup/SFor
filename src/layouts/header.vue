@@ -23,14 +23,18 @@
         <component :is="icon"></component>
       </ElIcon>
     </div>
-    <ElAvatar :size="avatarSize" class="avatar"></ElAvatar>
+    <ElAvatar :size="avatarSize" class="avatar">
+      <ElIcon v-if="data" class="signOut" @click="signOut">
+        <ElIconCloseBold></ElIconCloseBold>
+      </ElIcon>
+    </ElAvatar>
   </div>
 </template>
 <script lang="ts" setup>
 interface iconType {
   name: string;
 }
-const { data } = useAuth();
+const { data, signOut } = useAuth();
 const navArray = ref<Array<string>>([
   "首页",
   "",
@@ -126,6 +130,17 @@ const goUser = () => {
   color: var(--el-text-color-primary);
 }
 .avatar {
+  position: relative;
   cursor: pointer;
+}
+.avatar:hover .signOut {
+  right: 0;
+}
+.signOut {
+  position: absolute;
+  transition: all 0.3s ease-out;
+  right: -100%;
+  width: 100%;
+  aspect-ratio: 1;
 }
 </style>

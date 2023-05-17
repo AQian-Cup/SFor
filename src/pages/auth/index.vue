@@ -1,20 +1,24 @@
 <template>
   <div class="auth">
     <div class="main">
-      <div class="authPart">
+      <ElForm
+        class="authPart"
+        label-position="left"
+        label-width="85px"
+      >
         <div>{{ registerTextArray[0] }}</div>
-        <div
+        <ElFormItem
           v-for="item in registerInputArray"
           class="input"
+          :label="item.label"
         >
-          <div>{{ item.label }}</div>
           <ElInput
             v-model="item.model"
             :type="item.type"
             :show-password="item.showPassword"
           ></ElInput>
-        </div>
-        <ElButton @click="handleRegister()">{{
+        </ElFormItem>
+        <ElButton @click="handleRegister">{{
           registerTextArray[1]
         }}</ElButton>
         <ElButton @click="handleChange">
@@ -23,18 +27,25 @@
             <ElIconRight></ElIconRight>
           </ElIcon>
         </ElButton>
-      </div>
-      <div class="authPart">
+      </ElForm>
+      <ElForm
+        class="authPart"
+        label-position="left"
+        label-width="85px"
+      >
         <div>{{ loginTextArray[0] }}</div>
-        <div v-for="item in loginInputArray" class="input">
-          <div>{{ item.label }}</div>
+        <ElFormItem
+          v-for="item in loginInputArray"
+          class="input"
+          :label="item.label"
+        >
           <ElInput
             v-model="item.model"
             :type="item.type"
             :show-password="item.showPassword"
           ></ElInput>
-        </div>
-        <ElButton @click="handleLogin()">{{
+        </ElFormItem>
+        <ElButton @click="handleLogin">{{
           loginTextArray[1]
         }}</ElButton>
         <ElButton @click="handleChange">
@@ -43,7 +54,7 @@
             <ElIconBack></ElIconBack>
           </ElIcon>
         </ElButton>
-      </div>
+      </ElForm>
       <div
         class="cover"
         :class="isMove ? 'coverMove' : ''"
@@ -119,11 +130,38 @@ const isMove = ref<boolean>(false);
 const handleChange = () => {
   isMove.value = !isMove.value;
 };
-const handleRegister = () => {
-  console.log("register");
+const handleRegister = async () => {
+  if (
+    registerInputArray.value[2].model !==
+    registerInputArray.value[3].model
+  ) {
+    ElMessage({
+      showClose: true,
+      message: "两次密码输入不一致",
+      type: "error",
+    });
+    return;
+  }
+  const { data: result } = await useFetch(
+    `/api/auth/register`,
+    {
+      query: {
+        email: registerInputArray.value[0].model,
+        username: registerInputArray.value[1].model,
+        password: registerInputArray.value[2].model,
+        invatitionCode: registerInputArray.value[4].model,
+      },
+    },
+  );
+  if (result) {
+    await signIn("credentials", {
+      email: registerInputArray.value[0].model,
+      password: registerInputArray.value[2].model,
+    });
+  }
 };
-const handleLogin = () => {
-  signIn("credentials", {
+const handleLogin = async () => {
+  await signIn("credentials", {
     email: loginInputArray.value[0].model,
     password: loginInputArray.value[1].model,
   });
@@ -154,22 +192,16 @@ const handleLogin = () => {
   align-items: center;
   flex: 1;
   height: 100%;
-  padding: 0 5%;
+}
+.authPart > *:not(:last-child) {
+  margin-bottom: 18px;
 }
 .input {
-  display: flex;
-  align-items: center;
-  width: 75%;
-}
-.input > div {
-  min-width: 80px;
-}
-.authPart > * {
-  margin-top: 5%;
+  width: 65%;
 }
 .authPart button {
   min-width: 50%;
-  margin-left: 0;
+  margin: 0;
 }
 .authPart button:hover .icon {
   width: 1em;
@@ -187,7 +219,7 @@ const handleLogin = () => {
   width: 50%;
   height: 100%;
   background: var(--el-color-primary);
-  transition: all 1s ease-in-out;
+  transition: transform 1s ease-in-out;
 }
 .coverMove {
   transform: translateX(100%);
