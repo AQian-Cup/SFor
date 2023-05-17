@@ -130,11 +130,38 @@ const isMove = ref<boolean>(false);
 const handleChange = () => {
   isMove.value = !isMove.value;
 };
-const handleRegister = () => {
-  console.log("register");
+const handleRegister = async () => {
+  if (
+    registerInputArray.value[2].model !==
+    registerInputArray.value[3].model
+  ) {
+    ElMessage({
+      showClose: true,
+      message: "两次密码输入不一致",
+      type: "error",
+    });
+    return;
+  }
+  const { data: result } = await useFetch(
+    `/api/auth/register`,
+    {
+      query: {
+        email: registerInputArray.value[0].model,
+        username: registerInputArray.value[1].model,
+        password: registerInputArray.value[2].model,
+        invatitionCode: registerInputArray.value[4].model,
+      },
+    },
+  );
+  if (result) {
+    await signIn("credentials", {
+      email: registerInputArray.value[0].model,
+      password: registerInputArray.value[2].model,
+    });
+  }
 };
-const handleLogin = () => {
-  signIn("credentials", {
+const handleLogin = async () => {
+  await signIn("credentials", {
     email: loginInputArray.value[0].model,
     password: loginInputArray.value[1].model,
   });
