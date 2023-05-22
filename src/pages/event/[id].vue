@@ -88,7 +88,7 @@ const { data: infomation } = await useFetch(
   `/api/event/${route.params.id}/infomation`,
 );
 const { data: isJoin } = await useFetch(
-  `/api/event/${id}/join`,
+  `/api/event/${id}/isJoin`,
   {
     query: {
       eventId: route.params.id,
