@@ -12,10 +12,13 @@
           </ElImage>
         </ElCarouselItem>
       </ElCarousel>
-      <template v-if="postArray.length">
+      <template v-if="eventArray?.length">
         <HomePost
-          v-for="item in postArray"
-          :post="item"
+          v-for="item in eventArray"
+          :id="item.id"
+          :title="item.name"
+          :content="item.introdution"
+          :source="item.source.name"
         ></HomePost>
       </template>
       <template v-else>
@@ -33,12 +36,6 @@ interface imageType {
   url: string;
   alt: string;
 }
-interface postType {
-  postId: string | number;
-  title: string;
-  content: string;
-  source: string;
-}
 const imageUrlArray = ref<Array<imageType>>([
   {
     url: "",
@@ -53,26 +50,9 @@ const imageUrlArray = ref<Array<imageType>>([
     alt: "图片3",
   },
 ]);
-const postArray = ref<Array<postType>>([
-  {
-    postId: "1",
-    title: "标题",
-    content: "内容",
-    source: "来源",
-  },
-  {
-    postId: "1",
-    title: "标题",
-    content: "内容",
-    source: "来源",
-  },
-  {
-    postId: "1",
-    title: "标题",
-    content: "内容",
-    source: "来源",
-  },
-]);
+const { data: eventArray } = await useFetch(
+  `/api/event/events`,
+);
 </script>
 <style scoped>
 .home {

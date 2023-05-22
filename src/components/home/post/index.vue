@@ -1,25 +1,27 @@
 <template>
-  <ElCard class="post" shadow="hover">
+  <ElCard class="post" shadow="hover" @click="goEvent">
     <template #header>
       <div class="header">
-        <div class="title">{{ post.title }}</div>
-        <div class="source">{{ post.source }}</div>
+        <div class="title">{{ title }}</div>
+        <div class="source">{{ source }}</div>
       </div>
     </template>
-    <div class="content">{{ post.content }}</div>
+    <div class="content">{{ content }}</div>
   </ElCard>
 </template>
 <script lang="ts" setup>
 interface postType {
-  postId: string | number;
+  id: string | number;
   title: string;
   content: string;
   source: string;
 }
-interface propType {
-  post: postType;
-}
-defineProps<propType>();
+const props = defineProps<postType>();
+const goEvent = () => {
+  return navigateTo({
+    path: `/event/${props.id}`,
+  });
+};
 </script>
 <style scoped>
 .post {

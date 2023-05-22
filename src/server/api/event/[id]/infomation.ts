@@ -3,12 +3,15 @@ interface infomationType {
   moreMessage: {
     university: string;
     college: string;
-    eventName: string;
     credit: number;
     startTime: string;
     endTime: string;
   };
   introdution: string;
+  source: {
+    id: number;
+    name: string;
+  };
   id: number;
 }
 
@@ -29,5 +32,6 @@ export default defineEventHandler(async (event) => {
     moreMessage: dbEvent?.moreMessage,
     introdution: dbEvent?.introdution,
     id: dbEvent?.id,
+    source: dbEvent.source,
   } as infomationType;
 });

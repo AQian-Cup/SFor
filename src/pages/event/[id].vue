@@ -25,9 +25,7 @@
           <div>
             学分：{{ infomation?.moreMessage.credit }}
           </div>
-          <div>
-            名称：{{ infomation?.moreMessage.eventName }}
-          </div>
+          <div>创建者：{{ infomation?.source?.name }}</div>
           <div>
             开始时间：{{
               infomation?.moreMessage.startTime
