@@ -22,3 +22,9 @@ export const hasEvent = async (
     },
   }));
 };
+
+export const getEvents = async (filter: object) => {
+  return await useMongodb("SFor", "event")
+    .collectionOrigin.find(filter)
+    .toArray();
+};
