@@ -16,24 +16,12 @@
           </ElCarouselItem>
         </ElCarousel>
         <div class="moreMessage">
-          <div>
-            学校：{{ infomation?.moreMessage.university }}
-          </div>
-          <div>
-            学院：{{ infomation?.moreMessage.college }}
-          </div>
-          <div>
-            学分：{{ infomation?.moreMessage.credit }}
-          </div>
+          <div>学校：{{ infomation?.university }}</div>
+          <div>学院：{{ infomation?.college }}</div>
+          <div>学分：{{ infomation?.credit }}</div>
           <div>创建者：{{ infomation?.source?.name }}</div>
-          <div>
-            开始时间：{{
-              infomation?.moreMessage.startTime
-            }}
-          </div>
-          <div>
-            结束时间：{{ infomation?.moreMessage.endTime }}
-          </div>
+          <div>开始时间：{{ infomation?.startTime }}</div>
+          <div>结束时间：{{ infomation?.endTime }}</div>
         </div>
       </div>
       <div class="rightPart">
