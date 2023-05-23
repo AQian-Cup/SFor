@@ -12,5 +12,15 @@ interface eventType extends WithId<Document> {
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
-  return (await getEvents(query)) as Array<eventType>;
+  const filter = {} as {
+    university?: string;
+    college?: string;
+  };
+  if (query.university) {
+    filter.university = query.university.toString();
+  }
+  if (query.college) {
+    filter.college = query.college.toString();
+  }
+  return (await getEvents(filter)) as Array<eventType>;
 });
