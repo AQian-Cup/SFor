@@ -2,6 +2,7 @@ import { WithId } from "mongodb";
 
 interface eventType extends WithId<Document> {
   name: string;
+  id: number;
 }
 
 export default defineEventHandler(async (event) => {
