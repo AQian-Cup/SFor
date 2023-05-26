@@ -45,9 +45,11 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.7",
+    "@types/formidable": "^2.0.6",
     "@vueuse/core": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
     "element-plus": "^2.3.0",
+    "formidable": "^3.2.5",
     "mongodb": "^5.2.0",
     "next-auth": "4.21.1",
     "pinia": "^2.0.33",
