@@ -1,12 +1,10 @@
 interface infomationType {
   images: Array<string>;
-  moreMessage: {
-    university: string;
-    college: string;
-    credit: number;
-    startTime: string;
-    endTime: string;
-  };
+  university: string;
+  college: string;
+  credit: number;
+  startTime: string;
+  endTime: string;
   introdution: string;
   source: {
     id: number;
@@ -29,8 +27,12 @@ export default defineEventHandler(async (event) => {
   }
   return {
     images: dbEvent?.images,
-    moreMessage: dbEvent?.moreMessage,
     introdution: dbEvent?.introdution,
+    university: dbEvent?.university,
+    college: dbEvent?.college,
+    credit: dbEvent?.credit,
+    startTime: dbEvent?.startTime,
+    endTime: dbEvent?.endTime,
     id: dbEvent?.id,
     source: dbEvent.source,
   } as infomationType;

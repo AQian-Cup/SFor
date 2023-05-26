@@ -1,7 +1,7 @@
 export const getParticipated = async (
   participated: Array<number>,
 ) => {
-  return useMongodb("SFor", "event")
+  return await useMongodb("SFor", "event")
     .collectionOrigin.find({
       id: { $in: participated },
     })
@@ -11,7 +11,7 @@ export const getParticipated = async (
 export const getCreated = async (
   created: Array<number>,
 ) => {
-  return useMongodb("SFor", "event")
+  return await useMongodb("SFor", "event")
     .collectionOrigin.find({
       id: { $in: created },
     })

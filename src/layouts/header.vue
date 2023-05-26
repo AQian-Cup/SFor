@@ -35,13 +35,7 @@ interface iconType {
   name: string;
 }
 const { data, signOut } = useAuth();
-const navArray = ref<Array<string>>([
-  "首页",
-  "",
-  "活动",
-  "",
-  "资讯",
-]);
+const navArray = ref<Array<string>>(["首页", "", "活动"]);
 const iconArray = shallowRef<Array<unknown>>([
   ElIconSetting,
   ElIconMessageBox,
@@ -54,6 +48,7 @@ const avatarSize = computed(() => {
 const handleNav = (nav: string) => {
   const routeObject: { [key: string]: string } = {
     首页: "/",
+    活动: "/events",
   };
   return navigateTo({
     path: routeObject[nav],

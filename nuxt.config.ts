@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxtjs/eslint-module",
     "nuxt-svgo",
     "@sidebase/nuxt-auth",
+    "formidable",
   ],
   auth: {
     enableGlobalAppMiddleware: true,

@@ -28,3 +28,13 @@ export const getEvents = async (filter: object) => {
     .collectionOrigin.find(filter)
     .toArray();
 };
+
+export const getParticipants = async (
+  participants: Array<number>,
+) => {
+  return await useMongodb("SFor", "user")
+    .collectionOrigin.find({
+      id: { $in: participants },
+    })
+    .toArray();
+};
