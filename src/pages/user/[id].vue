@@ -19,6 +19,27 @@
       :stretch="true"
     >
       <ElCard
+        v-show="activeTabName"
+        shadow="hover"
+        class="event"
+        :body-style="{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '0px',
+          height: '100%',
+        }"
+        @click="goCreate"
+      >
+        <ElIcon
+          size="3em"
+          color="var(--el-fill-color-darker)"
+        >
+          <ElIconPlus></ElIconPlus>
+        </ElIcon>
+      </ElCard>
+      <ElCard
         v-for="event in events"
         class="event"
         shadow="hover"
@@ -28,6 +49,7 @@
           padding: '0px',
           height: '100%',
         }"
+        @click="goEvent(event.id)"
       >
         <ElImage class="eventImage"></ElImage>
         <div class="eventText">{{ event.name }}</div>
@@ -58,6 +80,21 @@ const { data: events } = await useFetch(
     watch: [activeTabName],
   },
 );
+const goCreate = () => {
+  return navigateTo({
+    path: `/event/create`,
+  });
+};
+const goEvent = (id: number) => {
+  if (activeTabName.value) {
+    return navigateTo({
+      path: `/event/${id}/admin`,
+    });
+  }
+  return navigateTo({
+    path: `/event/${id}`,
+  });
+};
 </script>
 <style scoped>
 .user {
