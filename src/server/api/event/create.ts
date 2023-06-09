@@ -19,5 +19,6 @@ export default defineEventHandler(async (event) => {
       id: body.id,
     },
     images: [],
+    messages: [],
   });
 });
