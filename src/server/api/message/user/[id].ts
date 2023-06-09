@@ -22,6 +22,6 @@ export default defineEventHandler(async (event) => {
     });
   }
   return (await getUserMessage(
-    user.message,
+    user.messages,
   )) as Array<eventType>;
 });

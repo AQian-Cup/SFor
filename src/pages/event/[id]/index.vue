@@ -1,34 +1,70 @@
 <template>
   <div class="event">
     <EventInfomation></EventInfomation>
-    <div class="reviewInput">
+    <div class="replyInput">
       <ElInput
         v-model="input"
         type="textarea"
-        placeholder="在此输入你想说的话"
+        :placeholder="placeholder"
         :autosize="{ minRows: 3 }"
         resize="none"
       >
       </ElInput>
       <button
-        class="reviewButton"
-        :class="{ reviewButtonShow: input }"
+        class="replyButton"
+        :class="{ replyButtonShow: input }"
+        @click="reply"
       >
         发送
       </button>
     </div>
-    <div class="review">
-      <div class="reviewUser">
-        <ElAvatar :size="32"></ElAvatar>
-        <div class="username">测试用户</div>
-      </div>
-      <ElDivider></ElDivider>
-      <div class="reviewContent"></div>
-    </div>
+    <EventReply
+      v-for="message in messages"
+      :reply-user-id="message.id"
+      :reply-content="message.content"
+      :reply-username="message.source.name"
+      :reply-user-avatar="message.source.avatar"
+      @reply="getReplyUserId(message.source.id)"
+    ></EventReply>
   </div>
 </template>
 <script lang="ts" setup>
+const { data } = useAuth();
+const route = useRoute();
+const { data: messages, refresh } = useFetch(
+  `/api/message/event/${route.params.id}`,
+);
 const input = ref("");
+const replyUserId = ref(0);
+watch(input, (value) => {
+  if (!value) {
+    replyUserId.value = 0;
+  }
+});
+const reply = async () => {
+  await useFetch(`/api/message/reply`, {
+    method: "post",
+    query: {
+      eventId: route.params.id,
+      replyUserId,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      sourceId: (data.value?.user as any).id,
+    },
+    body: { input },
+    watch: false,
+  });
+  input.value = "";
+  refresh();
+};
+const getReplyUserId = (id: number) => {
+  replyUserId.value = id;
+};
+const placeholder = computed(() => {
+  if (replyUserId.value) {
+    return `回复 ${replyUserId.value} 号用户`;
+  }
+  return "在此输入你想说的话";
+});
 </script>
 <style scoped>
 .event {
@@ -46,11 +82,11 @@ const input = ref("");
 .event > div + div {
   margin-top: 20px;
 }
-.reviewInput {
+.replyInput {
   position: relative;
   overflow: hidden;
 }
-.reviewButton {
+.replyButton {
   box-sizing: border-box;
   display: inline-block;
   padding: 6px 12px;
@@ -66,7 +102,7 @@ const input = ref("");
   cursor: pointer;
 }
 
-.reviewButton:before {
+.replyButton:before {
   content: "";
   position: absolute;
   left: 50%;
@@ -81,7 +117,7 @@ const input = ref("");
   z-index: -1;
 }
 
-.reviewButton:after {
+.replyButton:after {
   content: "";
   position: absolute;
   left: 55%;
@@ -96,35 +132,35 @@ const input = ref("");
   z-index: -1;
 }
 
-.reviewButton:hover {
+.replyButton:hover {
   color: #ffffff;
   border: 1px solid #39bda7;
 }
 
-.reviewButton:hover:before {
+.replyButton:hover:before {
   top: -35%;
   background-color: #39bda7;
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
-.reviewButton:hover:after {
+.replyButton:hover:after {
   top: -45%;
   background-color: #39bda7;
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
-.reviewButtonShow {
+.replyButtonShow {
   right: 1px;
 }
-.review {
+.reply {
   display: flex;
   flex-direction: column;
   height: 120px;
   background: var(--el-fill-color-lighter);
 }
-.review > .el-divider--horizontal {
+.reply > .el-divider--horizontal {
   margin: 0;
 }
-.reviewUser {
+.replyUser {
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -136,7 +172,7 @@ const input = ref("");
   font-weight: bold;
   line-height: 1em;
 }
-.reviewContent {
+.replyContent {
   box-sizing: border-box;
   flex: 3;
   padding: 10px;
