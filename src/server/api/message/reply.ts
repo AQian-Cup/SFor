@@ -3,6 +3,7 @@ interface messageType {
   source: {
     avatar?: "";
     id: number;
+    username: string;
     name: string;
   };
   type?: string;
@@ -25,6 +26,7 @@ export default defineEventHandler(async (event) => {
     source: {
       id: user?.id,
       name: user?.name,
+      username: user?.username,
       avatar: user?.avatar,
     },
     content: body.input,
