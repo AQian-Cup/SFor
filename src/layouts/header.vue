@@ -56,7 +56,7 @@ const handleNav = (nav: string) => {
 };
 const handleIcon = (icon: unknown) => {
   const functionObject: { [key: string]: () => void } = {
-    // Setting: goSetting,
+    Setting: goSetting,
     MessageBox: goMessage,
     User: goUser,
   };
@@ -76,6 +76,11 @@ const goUser = () => {
   const { id } = data.value?.user as any;
   return navigateTo({
     path: `/user/${id}`,
+  });
+};
+const goSetting = () => {
+  return navigateTo({
+    path: `/setting`,
   });
 };
 </script>
