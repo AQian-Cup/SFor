@@ -1,7 +1,11 @@
 <template>
   <div class="user">
     <div class="profile">
-      <ElImage class="profileImage"></ElImage>
+      <ElAvatar
+        :size="300"
+        :src="avatar"
+        shape="square"
+      ></ElAvatar>
       <div v-if="user" class="profileText">
         <div>姓名：{{ user.name }}</div>
         <div>年龄：{{ user.age }}</div>
@@ -69,6 +73,9 @@ const route = useRoute();
 const { data: user } = await useFetch(
   `/api/user/${route.params.id}/profile`,
 );
+const avatar = computed(() => {
+  return "/user/" + user.value?.avatar;
+});
 const activeTabName = ref(0);
 const tabPaneArray = ["已参加活动", "已创建活动"];
 const { data: events } = await useFetch(
@@ -115,10 +122,6 @@ const goEvent = (id: number) => {
   height: 360px;
   margin-bottom: 20px;
   padding: 30px;
-}
-.profileImage {
-  width: 300px;
-  height: 300px;
 }
 .profileText {
   flex: 1;

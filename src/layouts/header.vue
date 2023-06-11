@@ -23,7 +23,11 @@
         <component :is="icon"></component>
       </ElIcon>
     </div>
-    <ElAvatar :size="avatarSize" class="avatar">
+    <ElAvatar
+      :size="avatarSize"
+      class="avatar"
+      :src="avatar"
+    >
       <ElIcon v-if="data" class="signOut" @click="signOut">
         <ElIconCloseBold></ElIconCloseBold>
       </ElIcon>
@@ -35,6 +39,10 @@ interface iconType {
   name: string;
 }
 const { data, signOut } = useAuth();
+const { data: profile } = useFetch(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  `/api/user/${(data.value?.user as any).id}/profile`,
+);
 const navArray = ref<Array<string>>(["首页", "", "活动"]);
 const iconArray = shallowRef<Array<unknown>>([
   ElIconSetting,
@@ -65,7 +73,6 @@ const handleIcon = (icon: unknown) => {
     functionObject[name]();
   }
 };
-// const goSetting = () => {};
 const goMessage = () => {
   return navigateTo({
     path: `/message`,
@@ -83,6 +90,9 @@ const goSetting = () => {
     path: `/setting`,
   });
 };
+const avatar = computed(() => {
+  return "/user/" + profile.value?.avatar;
+});
 </script>
 <style scoped>
 .header {
