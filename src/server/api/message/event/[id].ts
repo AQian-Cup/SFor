@@ -9,6 +9,7 @@ interface messageType extends WithId<Document> {
 interface sourceType {
   id: number;
   name: string;
+  username: string;
   avatar: string;
 }
 

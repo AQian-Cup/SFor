@@ -50,9 +50,6 @@ const progressArray = ref<Array<progressType>>([
   },
 ]);
 const task = ref<string>("支教");
-onMounted(() => {
-  console.log(1);
-});
 </script>
 <style scoped>
 .progress {

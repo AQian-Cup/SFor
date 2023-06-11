@@ -22,7 +22,7 @@
       v-for="message in messages"
       :reply-user-id="message.id"
       :reply-content="message.content"
-      :reply-username="message.source.name"
+      :reply-username="message.source.username"
       :reply-user-avatar="message.source.avatar"
       @reply="getReplyUserId(message.source.id)"
     ></EventReply>
