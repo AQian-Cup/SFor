@@ -7,7 +7,7 @@
             class="image"
             :src="item.url"
             :alt="item.alt"
-            fit="fill"
+            fit="cover"
           >
           </ElImage>
         </ElCarouselItem>
@@ -38,16 +38,12 @@ interface imageType {
 }
 const imageUrlArray = ref<Array<imageType>>([
   {
-    url: "",
+    url: "/ad/0.jpg",
     alt: "图片1",
   },
   {
-    url: "",
+    url: "/ad/1.jpg",
     alt: "图片2",
-  },
-  {
-    url: "",
-    alt: "图片3",
   },
 ]);
 const { data: eventArray } = await useFetch(
