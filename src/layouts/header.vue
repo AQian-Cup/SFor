@@ -39,9 +39,15 @@ interface iconType {
   name: string;
 }
 const { data, signOut } = useAuth();
-const { data: profile } = useFetch(
+const id = computed(() => {
+  if (!data.value?.user) {
+    return 0;
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  `/api/user/${(data.value?.user as any).id}/profile`,
+  return (data.value?.user as any).id;
+});
+const { data: profile } = useFetch(
+  `/api/user/${id.value}/profile`,
 );
 const navArray = ref<Array<string>>(["首页", "", "活动"]);
 const iconArray = shallowRef<Array<unknown>>([
@@ -139,11 +145,11 @@ const avatar = computed(() => {
 .icons i:hover {
   color: var(--el-text-color-primary);
 }
-.avatar {
+:deep(.avatar) {
   position: relative;
   cursor: pointer;
 }
-.avatar:hover .signOut {
+:deep(.avatar):hover > .signOut {
   right: 0;
 }
 .signOut {
