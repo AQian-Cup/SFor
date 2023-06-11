@@ -42,5 +42,5 @@ export const writeFile = async (
   const reader = fs.createReadStream(file.filepath);
   const writer = fs.createWriteStream(filepath);
   await reader.pipe(writer);
-  return {};
+  return filename + extname;
 };
